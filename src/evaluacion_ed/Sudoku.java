@@ -37,9 +37,9 @@ public class Sudoku
     public void inicializar() throws SudokuExcepcion
     {
         
-        for (int i = 0; i < 10; i++) 
+        for (int i = 0; i < 9; i++) 
         {
-            for (int j = 0; j < 10; j++) 
+            for (int j = 0; j < 9; j++) 
             {
                 
             }
@@ -48,32 +48,98 @@ public class Sudoku
  
     }
     
+    /**
+     * Muestra el tablero del sudoku
+     * @return devuelve el tablero del sudoku
+     */
+    
     @Override
-    public String toString()
-            
+    public String toString()      
     {
-    String resultadoFinal = "";
-    return resultadoFinal;
+        String resultadoFinal = "";
+        for (int i = 0; i < sudoku.size(); i++) 
+        {
+            for (int j = 0; j < 9; j++) 
+            {
+                int resultado = sudoku.get(i).get(j);
+                resultadoFinal=resultado +" ";
+
+            }
+            resultadoFinal ="\n";
+            
+        }
+        return resultadoFinal;
     }
+    
+    /**
+     * Le pasamos un elemento diciendole la fila y la columna y este metodo lo modifica
+     * @param fila la fila que le vamos a decir
+     * @param columna la columna que le vamos a decir
+     * @param elemento el numero que vamos a insertar en fila y columna
+     * @throws SudokuExcepcion 
+     */
+    
+    
     public void modificarElemento(int fila, int columna, int elemento) throws SudokuExcepcion
    
     {
 
     }
+    
+    /**
+     * Quita el elemento del tablero
+     * @param fila le decimos la fila donde este el elemento a quitar
+     * @param columna le decimos la columna donde este el elemento a quitar
+     */
 
     public void vaciarElemento(int fila, int columna)
     {
+        sudoku.get(fila).set(columna, 0);
 
     }
+    /**
+     * Comprueba que el numero que le digamos se pueda introducir en esa fila
+     * @param fila fila donde vamos a introducir el numero
+     * @param elemento el numero a introducir
+     * @return 
+     */
     private boolean comprobarFila(int fila, int elemento)
     {
-    boolean resultado = true;
+        boolean resultado = true;
+        for (int i = 0; i < sudoku.size(); i++) 
+        {
+            if(sudoku.get(fila).get(i) == elemento)
+            {
+                resultado = false;
+            }
+        }
     return resultado;
+ 
     }
+    
+    
+    /**
+     * Comprueba que el numero que le digamos se pueda introducir en esa columna
+     * @param columna columna donde vamos a introducir el numero
+     * @param elemento el numero a introducir
+     * @return 
+     */
     private boolean comprobarColumna(int columna, int elemento)
     {
-    boolean resultado = true;
-    return resultado;
+        boolean resultado = true;
+        for (int i = 0; i < sudoku.size(); i++) 
+        {
+            for (int j = 0; j < sudoku.size(); j++) 
+            {
+                if(sudoku.get(i).get(columna) == elemento)
+                {
+                    resultado = false;
+                }
+            }  
+        }
+        return resultado;
+        
+        
     }
     private boolean comprobarCuadrante(int fila, int columna, int elemento)
     {
