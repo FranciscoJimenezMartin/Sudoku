@@ -12,6 +12,9 @@ import java.util.Random;
 /**
  *
  * @author Kisko
+ * Entornos de Desarrollo
+ * Evaluacion Tema 4 
+ * Poniente Formacion
  */
 public class Sudoku 
 {
@@ -63,7 +66,6 @@ public class Sudoku
             {
                 int resultado = sudoku.get(i).get(j);
                 resultadoFinal=resultado +" ";
-
             }
             resultadoFinal ="\n";
             
@@ -72,17 +74,24 @@ public class Sudoku
     }
     
     /**
-     * Le pasamos un elemento diciendole la fila y la columna y este metodo lo modifica
+     * Le pasamos un elemento diciendole la fila y la columna y este metodo lo modifica utilizando el metodo puedoInsertar
      * @param fila la fila que le vamos a decir
      * @param columna la columna que le vamos a decir
      * @param elemento el numero que vamos a insertar en fila y columna
      * @throws SudokuExcepcion 
      */
-    
-    
+
     public void modificarElemento(int fila, int columna, int elemento) throws SudokuExcepcion
    
     {
+        if(puedoInsertar(fila, columna, elemento)==true)
+        {
+            sudoku.get(fila).set(columna, elemento);
+        }
+        else
+        {
+            System.out.println("FALLO! El elemento no se puede modificar");
+        }
 
     }
     
@@ -143,14 +152,25 @@ public class Sudoku
     }
     private boolean comprobarCuadrante(int fila, int columna, int elemento)
     {
-    boolean resultado = true;
+        boolean resultado = true;
 
-    return resultado;
+        return resultado;
     }
+    /**
+     * Para saber si puedes insertar el numero, comprobando columna y fila
+     * @param fila comprueba la fila
+     * @param columna comprueba la columna  
+     * @param elemento comprueba el numero a introducir
+     * @return 
+     */
     private boolean puedoInsertar(int fila, int columna, int elemento)
     {
-    boolean resultado = false;
-    return resultado;
+        boolean resultado = false;
+        if(comprobarFila (fila, elemento) == true && comprobarColumna(columna, elemento) == true )
+        {
+            resultado=true;
+        }
+        return resultado;
     }
     
     
